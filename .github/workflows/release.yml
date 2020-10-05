@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build_artifact:
@@ -40,7 +40,7 @@ jobs:
         run: yarn release-github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+
   release_npm:
     name: Release to Github Packages NPM regitry
     needs: build_artifact
@@ -112,7 +112,7 @@ jobs:
         run: cd "$(dirname "$(find dist/java/ -type f -name *.pom | head -1)")" && mvn deploy -f "$(find . -type f -name *.pom | head -1)" -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{github.repository}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
   release_homebrew:
     name: Release to Homebrew
     # The branch or tag ref that triggered the workflow run.

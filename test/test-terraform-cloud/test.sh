@@ -4,7 +4,7 @@ set -e
 # Disable spinner even when we have a TTY
 export CI='1'
 
-# On master multiple builds might be running and leading to locks - skip always until
+# On main multiple builds might be running and leading to locks - skip always until
 # that's fixed
 echo "DISABLED - skipping" && exit 0;
 
